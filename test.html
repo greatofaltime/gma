@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>동방원곡모음</title>
+    <style>
+        .songButton {
+            display: none; /* 초기에는 노래 버튼을 숨깁니다. */
+        }
+    </style>
+</head>
+<body>
+    <h1>동방원곡모음</h1>
+    
+    <!-- 이미지로 된 버튼들 -->
+    <button onclick="showSongs('category1')"><img src="category1_icon.png" alt="동방홍마향"></button>
+    <button onclick="showSongs('category2')"><img src="category2_icon.png" alt="동방요요몽"></button>
+    <button onclick="showSongs('category3')"><img src="category3_icon.png" alt="동방영야초"></button>
+
+    <!-- 노래를 재생할 수 있는 버튼들 -->
+    <div id="songButtons">
+        <!-- 카테고리 1에 속하는 노래 버튼들 -->
+        <button class="songButton category1" onclick="playSong('붉은색보다도_빨간_꿈.mp3')">붉은색보다도 빨간 꿈 </button>
+<button class="songButton category1" onclick="playSong('꽈리처럼_붉은_혼.mp3')">꽈리처럼 붉은 혼 </button>
+<button class="songButton category1" onclick="playSong('요마야행.mp3')">요마야행 </button>
+<button class="songButton category1" onclick="playSong('르네이트_엘프.mp3')">르네이트 엘프 </button>
+<button class="songButton category1" onclick="playSong('말광량이_연랑.mp3')">말광량이 연랑 </button>
+<button class="songButton category1" onclick="playSong('상해홍차관.mp3')">상해홍차관 </button>
+<button class="songButton category1" onclick="playSong('메이지_17년의-상하이_앨리스.mp3')">메이지 17년의 상하이 앨리스 </button>
+<button class="songButton category1" onclick="playSong('브와르_마법도서관.mp3')">브와르 마법도서관 </button>
+<button class="songButton category1" onclick="playSong('락드_걸.mp3')">락드 걸 </button>
+<button class="songButton category1" onclick="playSong('메이드와_피의_회중시계.mp3')">메이드와 피의 회중시계 </button>
+<button class="songButton category1" onclick="playSong('달시계_루나_다이얼.mp3')">달시계 ~ 루나 다이얼 </button>
+<button class="songButton category1" onclick="playSong('체페슈의_어린_후예.mp3')">체페슈의 어린 후예 </button>
+<button class="songButton category1" onclick="playSong('죽은_왕녀를_위한_세프텟트.mp3')">죽은 왕녀를 위한 세프텟트 </button>
+<button class="songButton category1" onclick="playSong('마법소녀들의_100년제.mp3')">마법소녀들의 100년제 </button>
+<button class="songButton category1" onclick="playSong('U.N_오웬.mp3')">U.N 오웬 </button>
+<button class="songButton category1" onclick="playSong('붉음보다_덧없는_영원.mp3')">붉음보다 덧없는 영원 </button>
+<button class="songButton category1" onclick="playSong('홍루.mp3')">홍루 </button>
+
+
+
+
+
+
+
+
+        <!-- 카테고리 2에 속하는 노래 버튼들 -->
+        <button class="songButton category2" onclick="playSong('song1_category2.mp3')">노래 1 (카테고리 2)</button>
+        <button class="songButton category2" onclick="playSong('song2_category2.mp3')">노래 2 (카테고리 2)</button>
+        <!-- 카테고리 3에 속하는 노래 버튼들 -->
+        <button class="songButton category3" onclick="playSong('song1_category3.mp3')">노래 1 (카테고리 3)</button>
+        <button class="songButton category3" onclick="playSong('song2_category3.mp3')">노래 2 (카테고리 3)</button>
+    </div>
+
+    <!-- 노래를 재생할 수 있는 오디오 태그 -->
+    <audio id="audioPlayer" controls style="display: none;">
+        <!-- 노래 파일 경로를 지정할 필요 없음 -->
+        <!-- JavaScript에서 파일 경로를 지정할 것임 -->
+        Your browser does not support the audio element.
+    </audio>
+
+    <script>
+        function showSongs(category) {
+            // 선택된 카테고리에 해당하는 노래 버튼들을 표시합니다.
+            var songButtons = document.getElementsByClassName('songButton');
+            for (var i = 0; i < songButtons.length; i++) {
+                // 카테고리에 맞는 클래스를 가진 노래 버튼만 보이게 합니다.
+                if (songButtons[i].classList.contains(category)) {
+                    songButtons[i].style.display = 'inline-block';
+                } else {
+                    songButtons[i].style.display = 'none';
+                }
+            }
+        }
+
+        function playSong(song) {
+            var audioPlayer = document.getElementById('audioPlayer');
+            var songUrl = song; // 이미지 버튼 클릭 시 전달된 노래 파일 경로
+            audioPlayer.src = songUrl;
+            audioPlayer.play();
+        }
+    </script>
+</body>
+</html>
