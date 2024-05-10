@@ -5,24 +5,37 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>동방원곡모음</title>
     <style>
+        /* 이미지와 텍스트가 함께 버튼으로 표시되는 버튼들 */
+        .categoryButton {
+            display: inline-block;
+            text-align: center; /* 텍스트를 가운데 정렬합니다. */
+            margin: 10px; /* 버튼 사이의 간격을 조절합니다. */
+            width: calc(33.33% - 20px); /* 모바일에서 3개씩 정렬되도록 너비를 조절합니다. */
+        }
+        
+        .categoryButton img {
+            max-width: 100%; /* 이미지가 버튼 너비를 넘지 않도록 설정합니다. */
+        }
+
+        .buttonText {
+            display: block;
+        }
+
+        /* 노래를 재생할 수 있는 버튼들 */
         .songButton {
             display: none; /* 초기에는 노래 버튼을 숨깁니다. */
         }
 
-        .categoryButton {
-            display: inline-block;
-            text-align: center;
+        /* 노래 버튼들의 컨테이너 */
+        #songButtons {
+            display: flex;
+            flex-wrap: wrap; /* 버튼이 화면을 넘칠 때 자동으로 다음 줄로 넘어가도록 설정합니다. */
         }
 
-        .categoryButton img {
-            display: block;
-            max-width: 100%;
-            height: auto;
-            margin: 0 auto; /* 이미지 중앙 정렬 */
-        }
-
-        .categoryButton .buttonText {
-            display: block;
+        /* 노래 버튼들 */
+        .songButton {
+            flex: 1 0 calc(33.33% - 20px); /* 모바일에서 3개씩 정렬되도록 너비를 조절합니다. */
+            margin: 10px; /* 버튼 사이의 간격을 조절합니다. */
         }
     </style>
 </head>
@@ -34,12 +47,10 @@
         <img src="category1_icon.png" alt="동방홍마향">
         <span class="buttonText">동방홍마향</span>
     </div>
-
     <div class="categoryButton" onclick="showSongs('category2')">
         <img src="category2_icon.png" alt="동방요요몽">
         <span class="buttonText">동방요요몽</span>
     </div>
-
     <div class="categoryButton" onclick="showSongs('category3')">
         <img src="category3_icon.png" alt="동방영야초">
         <span class="buttonText">동방영야초</span>
@@ -65,39 +76,8 @@
 <button class="songButton category1" onclick="playSong('U.N_오웬.mp3')">U.N 오웬 </button>
 <button class="songButton category1" onclick="playSong('붉음보다_덧없는_영원.mp3')">붉음보다 덧없는 영원 </button>
 <button class="songButton category1" onclick="playSong('홍루.mp3')">홍루 </button>
-        <!-- 이하 생략 -->
-        
         <!-- 카테고리 2에 속하는 노래 버튼들 -->
         <button class="songButton category2" onclick="playSong('song1_category2.mp3')">노래 1 (카테고리 2)</button>
         <button class="songButton category2" onclick="playSong('song2_category2.mp3')">노래 2 (카테고리 2)</button>
         <!-- 카테고리 3에 속하는 노래 버튼들 -->
-        <button class="songButton category3" onclick="playSong('song1_category3.mp3')">노래 1 (카테고리 3)</button>
-        <button class="songButton category3" onclick="playSong('song2_category3.mp3')">노래 2 (카테고리 3)</button>
-    </div>
-
-    <!-- 노래를 재생할 수 있는 오디오 태그 -->
-    <audio id="audioPlayer" controls style="display: none;">
-        Your browser does not support the audio element.
-    </audio>
-
-    <script>
-        function showSongs(category) {
-            var songButtons = document.getElementsByClassName('songButton');
-            for (var i = 0; i < songButtons.length; i++) {
-                if (songButtons[i].classList.contains(category)) {
-                    songButtons[i].style.display = 'inline-block';
-                } else {
-                    songButtons[i].style.display = 'none';
-                }
-            }
-        }
-
-        function playSong(song) {
-            var audioPlayer = document.getElementById('audioPlayer');
-            var songUrl = song;
-            audioPlayer.src = songUrl;
-            audioPlayer.play();
-        }
-    </script>
-</body>
-</html>
+        <button class="songButton category3" onclick="playSong('song1_category3.mp3')">
