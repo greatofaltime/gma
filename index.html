@@ -24,10 +24,11 @@
         /* 노래를 재생할 수 있는 버튼들 */
         .songButton {
             display: none; /* 초기에는 노래 버튼을 숨깁니다. */
+            margin-top: 10px; /* 노래 버튼과 카테고리 버튼 사이의 간격을 조절합니다. */
         }
 
         /* 노래 버튼들의 컨테이너 */
-        #songButtons {
+        .songButtonsContainer {
             display: flex;
             flex-wrap: wrap; /* 버튼이 화면을 넘칠 때 자동으로 다음 줄로 넘어가도록 설정합니다. */
         }
@@ -35,7 +36,7 @@
         /* 노래 버튼들 */
         .songButton {
             flex: 1 0 calc(33.33% - 20px); /* 모바일에서 3개씩 정렬되도록 너비를 조절합니다. */
-            margin: 10px; /* 버튼 사이의 간격을 조절합니다. */
+            margin: 0 10px; /* 버튼 사이의 간격을 조절합니다. */
         }
     </style>
 </head>
@@ -57,7 +58,7 @@
     </div>
 
     <!-- 노래를 재생할 수 있는 버튼들 -->
-    <div id="songButtons">
+    <div id="songButtons" class="songButtonsContainer">
         <!-- 카테고리 1에 속하는 노래 버튼들 -->
         <button class="songButton category1" onclick="playSong('붉은색보다도_빨간_꿈.mp3')">붉은색보다도 빨간 꿈</button>
         <button class="songButton category1" onclick="playSong('꽈리처럼_붉은_혼.mp3')">꽈리처럼 붉은 혼</button>
@@ -80,4 +81,41 @@
         <button class="songButton category2" onclick="playSong('song1_category2.mp3')">노래 1 (카테고리 2)</button>
         <button class="songButton category2" onclick="playSong('song2_category2.mp3')">노래 2 (카테고리 2)</button>
         <!-- 카테고리 3에 속하는 노래 버튼들 -->
-        <button class="songButton category3" onclick="playSong('song1_category3.mp3')">
+        <button class="songButton category3" onclick="playSong('song1_category3.mp3')">노래 1 (카테고리 3)</button>
+        <button class="songButton category3" onclick="playSong('song2_category3.mp3')">노래 2 (카테고리 3)</button>
+    </div>
+
+    <!-- 노래를 재생할 수 있는 오디오 태그 -->
+    <audio id="audioPlayer" controls style="display: none;">
+        <!-- 노래 파일 경로를 지정할 필요 없음 -->
+        <!-- JavaScript에서 파일 경로를 지정할 것임 -->
+        Your browser does not support the audio element.
+    </audio>
+
+    <script>
+        function showSongs(category) {
+            var songButtons = document.querySelectorAll('.songButton.' + category);
+            var songButtonsContainer = document.getElementById('songButtons');
+            
+            // 모든 노래 버튼을 숨깁니다.
+            var allSongButtons = document.querySelectorAll('.songButton');
+            allSongButtons.forEach(function(button) {
+                button.style.display = 'none';
+            });
+            
+            // 선택된 카테고리에 해당하는 노래 버튼들을 표시합니다.
+            songButtonsContainer.style.display = 'block'; // 노래 버튼 컨테이너를 보이게 합니다.
+            songButtons.forEach(function(button) {
+                button.style.display = 'inline-block';
+            });
+        }
+
+        function playSong(song) {
+            var audioPlayer = document.getElementById('audioPlayer');
+            var songUrl = song; // 이미지 버튼 클릭 시 전달된 노래 파일 경로
+            audioPlayer.src = songUrl;
+            audioPlayer.play();
+        }
+    </script>
+</body>
+</html>
